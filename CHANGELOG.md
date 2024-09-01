@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/LucianBinner/job-c-17-test-url-shortener/compare/v0.0.3...v0.0.4) (2024-09-01)
+
+
+### Features
+
+* create get urls controller ([c7c155f](https://github.com/LucianBinner/job-c-17-test-url-shortener/commit/c7c155fa43be13c06bcbfdcead006d154c1bc04f))
+
 ### [0.0.3](https://github.com/LucianBinner/job-c-17-test-url-shortener/compare/v0.0.2...v0.0.3) (2024-09-01)
 
 

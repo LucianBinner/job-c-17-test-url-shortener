@@ -1,6 +1,6 @@
 {
   "name": "url-shortener",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "API to shorten urls",
   "author": "Binner <lucian.binner@hotmail.com>",
   "private": true,
