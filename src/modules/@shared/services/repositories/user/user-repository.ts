@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaConfig } from '@/config/prisma.config';
-import { User, Prisma } from '@prisma/client';
+import { User } from '@prisma/client';
 import { createUserCto } from './ctos/create-user-cto';
 
 @Injectable()
@@ -21,6 +21,14 @@ export class UserRepository {
     return await this.prisma.user.findFirst({
       where: {
         email
+      }
+    });
+  }
+
+  async getById(id: number): Promise<User> {
+    return await this.prisma.user.findFirst({
+      where: {
+        id
       }
     });
   }

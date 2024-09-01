@@ -24,7 +24,7 @@ model User {
 model Url {
   id        Int      @default(autoincrement()) @id
   origin   String
-  urlShortener   String
+  urlToken   String @unique
   clicks   Int @default(0)
   user    User?    @relation(fields: [userId], references: [id])
   userId  Int?

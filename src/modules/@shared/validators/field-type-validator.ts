@@ -8,8 +8,9 @@ export class FieldTypeValidator {
     for (const fieldObject in object) {
       const currentFieldType = fieldType.find(field => field[0] === fieldObject)
       if (
-        currentFieldType === null ||
-        currentFieldType === undefined ||
+        currentFieldType !== null &&
+        currentFieldType !== undefined &&
+        object[fieldObject] &&
         typeof object[fieldObject] !== currentFieldType[1]
       ) {
         throw new TypeParamError(fieldObject)

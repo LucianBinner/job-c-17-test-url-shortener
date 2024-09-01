@@ -1,11 +1,11 @@
 import { EmailInUserError } from "@/modules/@shared/errors";
 import { Injectable } from "@nestjs/common";
-import { UserRepository } from "../../services/repositories/user/user-repository";
 import { SignUpInput } from "./signup-input";
 import { SignUpValidate } from "./signup-validate";
 import { SignUpOutput } from "./signup-output";
 import { HashGeneratorAdapter } from "@/modules/@shared/adapters/criptography/hash-generator-adapter";
 import { EnvironmentUtils } from "@/modules/@shared/utils/environment/environment-utils";
+import { UserRepository } from "@/modules/@shared/services/repositories/user/user-repository";
 
 @Injectable()
 export class SignUpUseCase {

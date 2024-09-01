@@ -2,9 +2,8 @@ import { Injectable } from '@nestjs/common'
 import * as jwt from 'jsonwebtoken';
 
 @Injectable()
-export class TokenGeneratorAdapter {
+export class JWTGeneratorAdapter {
   async execute(params: any, secret: string): Promise<string> {
-    const accessToken =  await jwt.sign(params, secret, { expiresIn: '1d'})
-    return accessToken
+    return await jwt.sign(params, secret, { expiresIn: '1d'})
   }
 }
