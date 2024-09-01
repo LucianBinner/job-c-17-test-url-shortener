@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/LucianBinner/job-c-17-test-url-shortener/compare/v0.0.4...v0.0.5) (2024-09-01)
+
+
+### Features
+
+* create delete urls controller ([2ac9599](https://github.com/LucianBinner/job-c-17-test-url-shortener/commit/2ac9599f846734ecf0a219296e30a6b34711a930))
+
 ### [0.0.4](https://github.com/LucianBinner/job-c-17-test-url-shortener/compare/v0.0.3...v0.0.4) (2024-09-01)
 
 
