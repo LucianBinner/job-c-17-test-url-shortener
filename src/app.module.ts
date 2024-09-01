@@ -22,6 +22,8 @@ import { SignInUseCase } from './modules/user/use-cases/signIn/signin-usecase';
 import { SignInValidate } from './modules/user/use-cases/signIn/signin-validate';
 import { SignUpUseCase } from './modules/user/use-cases/signUp/signup-usecase';
 import { SignUpValidate } from './modules/user/use-cases/signUp/signup-validate';
+import { DeleteURLUseCase } from './modules/url/use-cases/delete-url/delete-url-usecase';
+import { DeleteURLValidate } from './modules/url/use-cases/delete-url/delete-url-validate';
 
 @Module({
   imports: [],
@@ -39,6 +41,8 @@ import { SignUpValidate } from './modules/user/use-cases/signUp/signup-validate'
     AddURLValidate,
     GetURLUseCase,
     GetURLValidate,
+    DeleteURLUseCase,
+    DeleteURLValidate,
     GetUniqueRandomStringRule,
     MapListResponseHelper,
     MapResponseHelper,

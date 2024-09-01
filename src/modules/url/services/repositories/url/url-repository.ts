@@ -56,4 +56,26 @@ export class URLRepository {
       }
     });
   }
+
+  async getByUserIdAndURLId(userId: number, urlId: number) {
+    return await this.prisma.url.findFirst({
+      where: {
+        id: urlId,
+        userId,
+        deletedAt: null
+      }
+    });
+  }
+
+  async deleteByURLId(urlId: number) {
+    return await this.prisma.url.update({
+      where: {
+        id: urlId,
+        deletedAt: null
+      },
+      data: {
+        deletedAt: new Date()
+      }
+    });
+  }
 }

@@ -1,16 +1,18 @@
 import { Auth } from '@/modules/@shared/decorator/auth/auth-decorator';
-import { Body, Controller, Get, Post, Request } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Request, Param } from '@nestjs/common';
 import { MapResponseHelper } from '../../helpers/map-response/map-response-helper';
 import { AddURLUseCase } from '../../use-cases/add-url/add-url-usecase';
 import { GetURLUseCase } from '../../use-cases/get-url/get-url-usecase';
 import { URLResponse } from '../responses/url-response';
 import { MapListResponseHelper } from '../../helpers/map-response/map-list-response-helper';
+import { DeleteURLUseCase } from '../../use-cases/delete-url/delete-url-usecase';
 
 @Controller('/url')
 export class URLController {
   constructor(
     private readonly addURLUseCase: AddURLUseCase,
     private readonly getURLUseCase: GetURLUseCase,
+    private readonly deleteURLUseCase: DeleteURLUseCase,
     private readonly mapResponseRule: MapResponseHelper,
     private readonly mapListResponseHelper: MapListResponseHelper,
   ) { }
@@ -42,5 +44,20 @@ export class URLController {
       userId,
     });
     return this.mapListResponseHelper.execute(urlDataList, request)
+  }
+
+  @Delete('/:id')
+  @Auth(true)
+  async delete(
+    @Param('id')
+    id: string,
+    @Request()
+    request: any
+  ): Promise<void> {
+    const userId = request.userId
+    await this.deleteURLUseCase.execute({
+      userId,
+      urlId: Number(id),
+    });
   }
 }
