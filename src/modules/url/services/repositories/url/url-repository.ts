@@ -34,7 +34,7 @@ export class URLRepository {
   async getByOrigin(origin: string) {
     return await this.prisma.url.findFirst({
       where: {
-        origin
+        origin,
       }
     });
   }
@@ -44,6 +44,15 @@ export class URLRepository {
       where: {
         origin,
         userId
+      }
+    });
+  }
+
+  async getByUserId(userId: number) {
+    return await this.prisma.url.findMany({
+      where: {
+        userId,
+        deletedAt: null
       }
     });
   }

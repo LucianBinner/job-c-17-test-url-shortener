@@ -9,11 +9,14 @@ import { EnvironmentUtils } from './modules/@shared/utils/environment/environmen
 import { BearerTokenUtils } from './modules/@shared/utils/http/request-utils';
 import { ComprarFieldsValidator, EmailValidator, FieldTypeValidator, RequiredFieldValidator } from './modules/@shared/validators';
 import { URLController } from './modules/url/entrypoints/controllers/url-controller';
+import { MapListResponseHelper } from './modules/url/helpers/map-response/map-list-response-helper';
 import { MapResponseHelper } from './modules/url/helpers/map-response/map-response-helper';
 import { URLRepository } from './modules/url/services/repositories/url/url-repository';
 import { AddURLUseCase } from './modules/url/use-cases/add-url/add-url-usecase';
 import { AddURLValidate } from './modules/url/use-cases/add-url/add-url-validate';
 import { GetUniqueRandomStringRule } from './modules/url/use-cases/add-url/rules/get-unique-random-string/get-unique-random-string-rule';
+import { GetURLUseCase } from './modules/url/use-cases/get-url/get-url-usecase';
+import { GetURLValidate } from './modules/url/use-cases/get-url/get-url-validate';
 import { UserController } from './modules/user/entrypoints/controllers/user-controller';
 import { SignInUseCase } from './modules/user/use-cases/signIn/signin-usecase';
 import { SignInValidate } from './modules/user/use-cases/signIn/signin-validate';
@@ -34,7 +37,10 @@ import { SignUpValidate } from './modules/user/use-cases/signUp/signup-validate'
     SignInValidate,
     AddURLUseCase,
     AddURLValidate,
+    GetURLUseCase,
+    GetURLValidate,
     GetUniqueRandomStringRule,
+    MapListResponseHelper,
     MapResponseHelper,
     UserRepository,
     URLRepository,

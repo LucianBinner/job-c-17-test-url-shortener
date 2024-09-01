@@ -2,24 +2,23 @@ import { Injectable } from "@nestjs/common";
 import { HttpAdapterHost } from '@nestjs/core';
 import { Url } from "@prisma/client";
 import { Request } from "express";
-import { SaveResponse } from "../../entrypoints/responses/save-response";
+import { URLResponse } from "../../entrypoints/responses/url-response";
 
 @Injectable()
 export class MapResponseHelper {
   constructor(
     private readonly httpAdapterHost: HttpAdapterHost
   ) { }
-  async execute(urlData: Url, request: Request): Promise<SaveResponse> {
+  execute(urlData: Url, request: Request): URLResponse {
     const protocol = request.protocol;
     const httpAdapter = this.httpAdapterHost.httpAdapter;
     const host = httpAdapter.getRequestHostname(request);
     const port = this.getPort();
     const urlShortener = `${protocol}://${host}${port ? ':' + port : ''}/${urlData.urlToken}`;
-    const urlMap: SaveResponse = {
+    const urlMap: URLResponse = {
       urlId: urlData.id,
       urlOrigin: urlData.origin,
       urlShortener,
-
     }
     return urlMap
   }

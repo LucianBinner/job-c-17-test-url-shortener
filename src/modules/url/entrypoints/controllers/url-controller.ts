@@ -1,15 +1,18 @@
-import { Body, Controller, Post, Request, UseGuards } from '@nestjs/common';
-import { AddURLUseCase } from '../../use-cases/add-url/add-url-usecase';
 import { Auth } from '@/modules/@shared/decorator/auth/auth-decorator';
-import { AuthGuard } from '@/modules/@shared/helpers/auth/auth-guard';
-import { SaveResponse } from '../responses/save-response';
+import { Body, Controller, Get, Post, Request } from '@nestjs/common';
 import { MapResponseHelper } from '../../helpers/map-response/map-response-helper';
+import { AddURLUseCase } from '../../use-cases/add-url/add-url-usecase';
+import { GetURLUseCase } from '../../use-cases/get-url/get-url-usecase';
+import { URLResponse } from '../responses/url-response';
+import { MapListResponseHelper } from '../../helpers/map-response/map-list-response-helper';
 
 @Controller('/url')
 export class URLController {
   constructor(
     private readonly addURLUseCase: AddURLUseCase,
+    private readonly getURLUseCase: GetURLUseCase,
     private readonly mapResponseRule: MapResponseHelper,
+    private readonly mapListResponseHelper: MapListResponseHelper,
   ) { }
 
   @Post('/')
@@ -19,12 +22,25 @@ export class URLController {
     urlOrigin: string,
     @Request()
     request: any
-  ): Promise<SaveResponse> {
+  ): Promise<URLResponse> {
     const userId = request.userId
     const urlData = await this.addURLUseCase.execute({
       urlOrigin,
       userId,
     });
-    return await this.mapResponseRule.execute(urlData, request)
+    return this.mapResponseRule.execute(urlData, request)
+  }
+
+  @Get('/')
+  @Auth(true)
+  async get(
+    @Request()
+    request: any
+  ): Promise<URLResponse[]> {
+    const userId = request.userId
+    const urlDataList = await this.getURLUseCase.execute({
+      userId,
+    });
+    return this.mapListResponseHelper.execute(urlDataList, request)
   }
 }
