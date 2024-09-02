@@ -8,9 +8,9 @@ import { controllersUser, providersUser } from './modules/user'
 @Module({
   imports: [],
   controllers: [
-    ...controllersOrigin,
     ...controllersURL,
-    ...controllersUser
+    ...controllersUser,
+    ...controllersOrigin,
   ],
   providers: [
     PrismaConfig,
