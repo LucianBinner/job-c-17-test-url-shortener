@@ -9,7 +9,7 @@ The api was created with the NestJS framework, and written in typescript that ru
 
 ## Setup
 
-## Observation
+### Observation
 
 You must have NodeJS installed at version v20.11.1 or higher.
 
@@ -48,6 +48,22 @@ $ yarn run start:dev
 
 # production mode
 $ yarn run start:prod
+```
+
+## Setup With Docker Compose
+
+### Observation
+
+Have docker installed on your computer
+
+### Start Application
+
+```bash
+# upload application
+$ docker compose up
+
+# close application
+$ docker compose down
 ```
 
 ## Stay in touch

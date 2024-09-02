@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres_url_shortener
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - my-network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: node_url_shotener
+    command: >
+      sh -c "
+        yarn install &&
+        yarn prisma migrate deploy &&
+        yarn build &&
+        yarn start:prod
+      "
+    env_file:
+      - "./.env"
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
+    depends_on:
+      - postgres
+    networks:
+      - my-network
+
+networks:
+  my-network:
+
+volumes:
+  postgres_data:
+
