@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { DeleteURLValidate } from "./delete-url-validate";
-import { URLRepository } from "../../services/repositories/url/url-repository";
 import { DeleteURLInput } from "./delete-url-input";
 import { TypeParamError } from "@/modules/@shared/errors";
+import { URLRepository } from "@/modules/@shared/services/repositories/url/url-repository";
 
 @Injectable()
 export class DeleteURLUseCase {

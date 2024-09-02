@@ -26,7 +26,18 @@ export class URLRepository {
   async getByURLToken(urlToken: string) {
     return await this.prisma.url.findFirst({
       where: {
-        urlToken
+        urlToken,
+        deletedAt: null
+      }
+    });
+  }
+
+  async getByUserIdAndURLToken(userId: number, urlToken: string) {
+    return await this.prisma.url.findFirst({
+      where: {
+        userId,
+        urlToken,
+        deletedAt: null
       }
     });
   }
@@ -35,6 +46,7 @@ export class URLRepository {
     return await this.prisma.url.findFirst({
       where: {
         origin,
+        deletedAt: null
       }
     });
   }
@@ -43,7 +55,8 @@ export class URLRepository {
     return await this.prisma.url.findFirst({
       where: {
         origin,
-        userId
+        userId,
+        deletedAt: null
       }
     });
   }

@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { GetURLInput } from "./get-url-input";
 import { GetURLValidate } from "./get-url-validate";
-import { URLRepository } from "../../services/repositories/url/url-repository";
+import { URLRepository } from "@/modules/@shared/services/repositories/url/url-repository";
 
 @Injectable()
 export class GetURLUseCase {
@@ -12,7 +12,7 @@ export class GetURLUseCase {
 
   async execute(input: GetURLInput) {
     this.getURLValidate.validate(input)
-    const userData = await this.urlRepository.getByUserId(input.userId)
-    return userData
+    const urlData = await this.urlRepository.getByUserId(input.userId)
+    return urlData
   }
 }

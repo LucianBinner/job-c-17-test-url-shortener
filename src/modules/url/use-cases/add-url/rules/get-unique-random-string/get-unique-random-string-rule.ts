@@ -1,5 +1,5 @@
 import { RandomStringGeneratorAdapter } from "@/modules/@shared/adapters/criptography/random-string-generator-adapter";
-import { URLRepository } from "@/modules/url/services/repositories/url/url-repository";
+import { URLRepository } from "@/modules/@shared/services/repositories/url/url-repository";
 import { Injectable } from "@nestjs/common";
 
 @Injectable()

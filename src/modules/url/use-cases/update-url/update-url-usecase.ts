@@ -1,9 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { UpdateURLInput } from "./update-url-input";
-import { UpdateURLValidate as UpdateURLValidate } from "./update-url-validate";
-import { URLRepository } from "../../services/repositories/url/url-repository";
-import { UnauthorizedError } from "@/modules/@shared/errors/unauthorized-error";
 import { TypeParamError } from "@/modules/@shared/errors";
+import { URLRepository } from "@/modules/@shared/services/repositories/url/url-repository";
+import { UpdateURLValidate } from "./update-url-validate";
 
 @Injectable()
 export class UpdateURLUseCase {

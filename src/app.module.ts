@@ -11,7 +11,6 @@ import { ComprarFieldsValidator, EmailValidator, FieldTypeValidator, RequiredFie
 import { URLController } from './modules/url/entrypoints/controllers/url-controller';
 import { MapListResponseHelper } from './modules/url/helpers/map-response/map-list-response-helper';
 import { MapResponseHelper } from './modules/url/helpers/map-response/map-response-helper';
-import { URLRepository } from './modules/url/services/repositories/url/url-repository';
 import { AddURLUseCase } from './modules/url/use-cases/add-url/add-url-usecase';
 import { AddURLValidate } from './modules/url/use-cases/add-url/add-url-validate';
 import { GetUniqueRandomStringRule } from './modules/url/use-cases/add-url/rules/get-unique-random-string/get-unique-random-string-rule';
@@ -26,12 +25,17 @@ import { DeleteURLUseCase } from './modules/url/use-cases/delete-url/delete-url-
 import { DeleteURLValidate } from './modules/url/use-cases/delete-url/delete-url-validate';
 import { UpdateURLUseCase } from './modules/url/use-cases/update-url/update-url-usecase';
 import { UpdateURLValidate } from './modules/url/use-cases/update-url/update-url-validate';
+import { CountClicksUseCase } from './modules/origin/usecase/count-clicks/count-clicks-usecase';
+import { CountClicksValidate } from './modules/origin/usecase/count-clicks/count-clicks-validate';
+import { URLRepository } from './modules/@shared/services/repositories/url/url-repository';
+import { OriginController } from './modules/origin/entrypoints/controllers/origin-controller';
 
 @Module({
   imports: [],
   controllers: [
     UserController,
-    URLController
+    URLController,
+    OriginController
   ],
   providers: [
     PrismaConfig,
@@ -47,6 +51,8 @@ import { UpdateURLValidate } from './modules/url/use-cases/update-url/update-url
     DeleteURLValidate,
     UpdateURLUseCase,
     UpdateURLValidate,
+    CountClicksUseCase,
+    CountClicksValidate,
     GetUniqueRandomStringRule,
     MapListResponseHelper,
     MapResponseHelper,

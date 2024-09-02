@@ -1,10 +1,10 @@
 import { Injectable } from "@nestjs/common";
 import { AddURLInput } from "./add-url-input";
-import { URLRepository } from "../../services/repositories/url/url-repository";
 import { AddURLValidate } from "./add-url-validate";
 import { UserRepository } from "@/modules/@shared/services/repositories/user/user-repository";
 import { ConflictDataError } from "@/modules/@shared/errors/conflict-data-error";
 import { GetUniqueRandomStringRule } from "./rules/get-unique-random-string/get-unique-random-string-rule";
+import { URLRepository } from "@/modules/@shared/services/repositories/url/url-repository";
 
 @Injectable()
 export class AddURLUseCase {
