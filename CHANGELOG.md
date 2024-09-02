@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/LucianBinner/job-c-17-test-url-shortener/compare/v0.0.6...v1.0.0) (2024-09-02)
+
+
+### Features
+
+* create origin controller ([7e97fa3](https://github.com/LucianBinner/job-c-17-test-url-shortener/commit/7e97fa36c8a69c84f3daa3dc9cfe8fc682b653d7))
+
 ### [0.0.6](https://github.com/LucianBinner/job-c-17-test-url-shortener/compare/v0.0.5...v0.0.6) (2024-09-02)
 
 
