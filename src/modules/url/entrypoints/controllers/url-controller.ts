@@ -1,11 +1,12 @@
 import { Auth } from '@/modules/@shared/decorator/auth/auth-decorator';
-import { Body, Controller, Delete, Get, Post, Request, Param } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Request, Param, Put } from '@nestjs/common';
 import { MapResponseHelper } from '../../helpers/map-response/map-response-helper';
 import { AddURLUseCase } from '../../use-cases/add-url/add-url-usecase';
 import { GetURLUseCase } from '../../use-cases/get-url/get-url-usecase';
 import { URLResponse } from '../responses/url-response';
 import { MapListResponseHelper } from '../../helpers/map-response/map-list-response-helper';
 import { DeleteURLUseCase } from '../../use-cases/delete-url/delete-url-usecase';
+import { UpdateURLUseCase } from '../../use-cases/update-url/update-url-usecase';
 
 @Controller('/url')
 export class URLController {
@@ -13,6 +14,7 @@ export class URLController {
     private readonly addURLUseCase: AddURLUseCase,
     private readonly getURLUseCase: GetURLUseCase,
     private readonly deleteURLUseCase: DeleteURLUseCase,
+    private readonly updateURLUseCase: UpdateURLUseCase,
     private readonly mapResponseRule: MapResponseHelper,
     private readonly mapListResponseHelper: MapListResponseHelper,
   ) { }
@@ -59,5 +61,24 @@ export class URLController {
       userId,
       urlId: Number(id),
     });
+  }
+
+  @Put('/:id')
+  @Auth(true)
+  async update(
+    @Param('id')
+    id: string,
+    @Body('urlOrigin')
+    urlOrigin: string,
+    @Request()
+    request: any
+  ): Promise<URLResponse> {
+    const userId = request.userId
+    const urlData = await this.updateURLUseCase.execute({
+      userId,
+      urlId: Number(id),
+      urlOrigin
+    });
+    return this.mapResponseRule.execute(urlData, request)
   }
 }

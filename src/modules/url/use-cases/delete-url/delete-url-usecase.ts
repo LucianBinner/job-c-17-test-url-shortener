@@ -15,6 +15,6 @@ export class DeleteURLUseCase {
     this.deleteURLValidate.validate(input)
     const urlData = await this.urlRepository.getByUserIdAndURLId(input.userId, input.urlId)
     if (!urlData) throw new TypeParamError('URL Id')
-    await this.urlRepository.deleteByURLId(input.urlId)
+    await this.urlRepository.updateByURLId(input.urlId, { deletedAt: new Date() })
   }
 }

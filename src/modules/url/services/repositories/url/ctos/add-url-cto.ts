@@ -1,6 +1,6 @@
 import { User } from "@prisma/client";
 
-export type AddURL = {
+export type AddURLCto = {
   origin: string;
   urlToken: string;
   user?: User

@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaConfig } from '@/config/prisma.config';
-import { AddURL } from './ctos/add-url';
+import { AddURLCto } from './ctos/add-url-cto';
 import { Prisma, Url } from '@prisma/client';
 
 @Injectable()
 export class URLRepository {
   constructor(private prisma: PrismaConfig) { }
 
-  async addUrl(addUrlParams: AddURL): Promise<Url> {
+  async addUrl(addUrlParams: AddURLCto): Promise<Url> {
     let urlData: Prisma.UrlCreateInput = {
       origin: addUrlParams.origin,
       urlToken: addUrlParams.urlToken
@@ -67,15 +67,13 @@ export class URLRepository {
     });
   }
 
-  async deleteByURLId(urlId: number) {
+  async updateByURLId<T>(urlId: number, urlUpdate: T) {
     return await this.prisma.url.update({
       where: {
         id: urlId,
         deletedAt: null
       },
-      data: {
-        deletedAt: new Date()
-      }
+      data: urlUpdate
     });
   }
 }
