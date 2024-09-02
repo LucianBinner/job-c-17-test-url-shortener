@@ -17,6 +17,8 @@ The package manager used was Yarn in version 1.22.18 or higher, and is necessary
 
 You must have an instance of PostgreSQL running. The user, password and bank name settings can be changed in the .env file, simply change the DATABASE_URL environment variable.
 
+All routes are configured in the postman file, just import the "url-shortener.postman_collection" file into your postman and view them
+
 ### Cloning repository on github
 
 ```bash
