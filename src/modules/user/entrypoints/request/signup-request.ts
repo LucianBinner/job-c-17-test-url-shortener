@@ -1,15 +1,15 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class URLResponse {
+export class SignUpRequest {
   @ApiProperty()
-  urlId: number;
+  name: string;
 
   @ApiProperty()
-  urlOrigin: string;
+  email: string;
 
   @ApiProperty()
-  urlShortener: string;
+  password: string;
 
   @ApiProperty()
-  clicks?: number;
+  passwordConfirmation: string;
 }

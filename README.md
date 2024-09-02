@@ -6,6 +6,9 @@ API that shortens URLS
 
 The api was created with the NestJS framework, and written in typescript that runs on NodeJS. The data is persisted in a relational database with PostgreSQL, communication between the API and the database is done by the Prisma ORM.
 
+## Documentation Swagger
+
+The api was documented with Swagger, to access type the api domain with "api" at the end, example: http://localhost:3000/api
 
 ## Setup
 

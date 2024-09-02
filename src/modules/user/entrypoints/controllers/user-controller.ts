@@ -1,8 +1,11 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { SignUpOutput } from '../../use-cases/signUp/signup-output';
-import { SignUpUseCase } from '../../use-cases/signUp/signup-usecase';
+import { ApiOkResponse } from '@nestjs/swagger';
 import { SignInUseCase } from '../../use-cases/signIn/signin-usecase';
-import { SignInOutput } from '../../use-cases/signIn/signin-output';
+import { SignUpUseCase } from '../../use-cases/signUp/signup-usecase';
+import { SignInRequest } from '../request/signin-request';
+import { SignUpRequest } from '../request/signup-request';
+import { SignUpResponse } from '../response/signup-response';
+import { SignInResponse } from '../response/signin-response';
 
 @Controller('/user')
 export class UserController {
@@ -12,16 +15,12 @@ export class UserController {
   ) { }
 
   @Post('/signup')
+  @ApiOkResponse({ type: SignUpResponse, description: 'Register User!' })
   async signUp(
-    @Body('name')
-    name: string,
-    @Body('email')
-    email: string,
-    @Body('password')
-    password: string,
-    @Body('passwordConfirmation')
-    passwordConfirmation: string,
-  ): Promise<SignUpOutput> {
+    @Body()
+    body: SignUpRequest
+  ): Promise<SignUpResponse> {
+    const { email, name, password, passwordConfirmation} = body
     return await this.signUpUseCase.execute({
       name,
       email,
@@ -31,12 +30,12 @@ export class UserController {
   }
 
   @Post('/signin')
+  @ApiOkResponse({ type: SignInResponse, description: 'Logged user' })
   async signIn(
-    @Body('email')
-    email: string,
-    @Body('password')
-    password: string,
-  ): Promise<SignInOutput> {
+    @Body()
+    body: SignInRequest
+  ): Promise<SignInResponse> {
+    const { email, password} = body
     return await this.signInUseCase.execute({email, password});
   }
 }

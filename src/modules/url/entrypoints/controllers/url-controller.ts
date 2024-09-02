@@ -7,6 +7,9 @@ import { URLResponse } from '../responses/url-response';
 import { MapListResponseHelper } from '../../helpers/map-response/map-list-response-helper';
 import { DeleteURLUseCase } from '../../use-cases/delete-url/delete-url-usecase';
 import { UpdateURLUseCase } from '../../use-cases/update-url/update-url-usecase';
+import { SaveURLResponse } from '../request/save-url-request';
+import { ApiBearerAuth, ApiOkResponse } from '@nestjs/swagger';
+import { UpdateURLResponse } from '../request/update-url-request';
 
 @Controller('/url')
 export class URLController {
@@ -21,13 +24,16 @@ export class URLController {
 
   @Post('/')
   @Auth(false)
+  @ApiBearerAuth()
+  @ApiOkResponse({ type: URLResponse, description: 'Save URL' })
   async save(
-    @Body('urlOrigin')
-    urlOrigin: string,
+    @Body()
+    body: SaveURLResponse,
     @Request()
     request: any
   ): Promise<URLResponse> {
     const userId = request.userId
+    const { urlOrigin } = body
     const urlData = await this.addURLUseCase.execute({
       urlOrigin,
       userId,
@@ -37,6 +43,8 @@ export class URLController {
 
   @Get('/')
   @Auth(true)
+  @ApiBearerAuth()
+  @ApiOkResponse({ type: [URLResponse], description: 'Get URLs' })
   async get(
     @Request()
     request: any
@@ -50,6 +58,8 @@ export class URLController {
 
   @Delete('/:id')
   @Auth(true)
+  @ApiBearerAuth()
+  @ApiOkResponse({  description: 'Delete URL' })
   async delete(
     @Param('id')
     id: string,
@@ -65,15 +75,18 @@ export class URLController {
 
   @Put('/:id')
   @Auth(true)
+  @ApiBearerAuth()
+  @ApiOkResponse({ type: URLResponse, description: 'Update URL' })
   async update(
     @Param('id')
     id: string,
-    @Body('urlOrigin')
-    urlOrigin: string,
+    @Body()
+    body: UpdateURLResponse,
     @Request()
     request: any
   ): Promise<URLResponse> {
     const userId = request.userId
+    const { urlOrigin } = body
     const urlData = await this.updateURLUseCase.execute({
       userId,
       urlId: Number(id),
